@@ -31,16 +31,15 @@ app.prepare().then(async () => {
   const server = new Koa();
   const router = new Router();
   server.keys = [Shopify.Context.API_SECRET_KEY];
-  console.log("Server Keys :",server.keys[0],"\n");
   server.use(
     createShopifyAuth({
       async afterAuth(ctx) {
         // Access token and shop available in ctx.state.shopify
         const { shop, accessToken, scope } = ctx.state.shopify;
         const host = ctx.query.host;
-        console.log(shop,"\n",accessToken,"\n",scope,"\n",host);
         ACTIVE_SHOPIFY_SHOPS[shop] = scope;
-
+        
+        console.log("Server Keys :",server.keys[0],"\n");
         const response = await Shopify.Webhooks.Registry.register({
           shop,
           accessToken,

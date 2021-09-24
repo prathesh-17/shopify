@@ -25,19 +25,20 @@ Shopify.Context.initialize({
   // This should be replaced with your preferred storage strategy
   SESSION_STORAGE: new Shopify.Session.MemorySessionStorage(),
 });
-console.log(process.env.SHOPIFY_API_KEY,"\n",process.env.SHOPIFY_API_SECRET,"\n",process.env.SCOPES,"\n",process.env.HOST)
 const ACTIVE_SHOPIFY_SHOPS = {};
 
 app.prepare().then(async () => {
   const server = new Koa();
   const router = new Router();
   server.keys = [Shopify.Context.API_SECRET_KEY];
+  console.log("Server Keys :",server.keys[0],"\n");
   server.use(
     createShopifyAuth({
       async afterAuth(ctx) {
         // Access token and shop available in ctx.state.shopify
         const { shop, accessToken, scope } = ctx.state.shopify;
         const host = ctx.query.host;
+        console.log(shop,"\n",accessToken,"\n",scope,"\n",host);
         ACTIVE_SHOPIFY_SHOPS[shop] = scope;
 
         const response = await Shopify.Webhooks.Registry.register({

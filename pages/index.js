@@ -61,4 +61,4 @@ class Index extends React.Component {
 
 export default Index;
 
-//https://obscure-springs-67637.herokuapp.com/auth?shop=sample17-store.myshopify.com
+//https://quiet-anchorage-64313.herokuapp.com/auth?shop=sample17-store.myshopify.com

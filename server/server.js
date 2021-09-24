@@ -25,7 +25,7 @@ Shopify.Context.initialize({
   // This should be replaced with your preferred storage strategy
   SESSION_STORAGE: new Shopify.Session.MemorySessionStorage(),
 });
-console.log(process.env.SHOPIFY_API_KEY,process.env.SHOPIFY_API_SECRET,process.env.SCOPES,proccess.env.HOST)
+console.log(process.env.SHOPIFY_API_KEY,process.env.SHOPIFY_API_SECRET,process.env.SCOPES,process.env.HOST)
 const ACTIVE_SHOPIFY_SHOPS = {};
 
 app.prepare().then(async () => {
